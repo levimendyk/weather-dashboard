@@ -1,0 +1,51 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    margin: 10px;
+}
+
+nav {
+    background-image: linear-gradient(to right, rgb(78, 121, 206) , rgb(21, 5, 88));
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    text-align: center;
+    padding: 10px;
+    align-items: center;
+    height: 40px;
+}
+
+.search {
+    margin: 10px 0;
+}
+
+button {
+    background-color: rgb(18, 147, 228);
+    color: white;
+    width: 200px;
+    height: 30px;
+}
+
+.todays-weather {
+    border: 3px solid black;
+}
+
+.five-day-forecast {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    display: flex;
+}
+
+.future {
+    background-color: rgb(21, 5, 88);
+    color: white;
+    text-align: start;
+    width: 300px;
+    height: 500px;
+    margin: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
