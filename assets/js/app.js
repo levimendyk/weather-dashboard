@@ -1,7 +1,4 @@
 // VARIABLES
-// https://api.openweathermap.org/data/2.5/weather?q='+inputValue.value+'&c16416fa1720113ce4b015709f047825
-// http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={API key}
-
 var button = document.getElementsByName("button");
 var inputValue = document.getElementsByName("inputValue");
 var date = document.querySelector(".date");
@@ -9,24 +6,28 @@ var icon = document.querySelector(".icon");
 var temp = document.querySelector(".temp");
 var wind = document.querySelector(".wind");
 var humidity = document.querySelector(".humidity");
-var apiKey = "c16416fa1720113ce4b015709f047825";
 var city;
-var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
-// var the API for Weather
-var apiUrl =
-  "api.openweathermap.org/data/2.5/forecast?q={city name}&appid=c16416fa1720113ce4b015709f047825";
+var apiKey = "c16416fa1720113ce4b015709f047825";
+var queryUrl =
+  "https://api.openweathermap.org/data/2.5/weather?q=" +
+  city +
+  "&units=imperial&appid=" +
+  apiKey;
 
-button.addEventListener("click", function () {
-  fetch(apiUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-    });
-});
-
-fetch(queryUrl)
+let weather = {
+  fetchWeather: function (city) {
+    fetch(queryUrl)
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  },
+  displayWeather: function (data) {
+    const { name } = data.name;
+    const { icon, description } = data.weather;
+    const { speed } = data.wind;
+    console.log(name, icon, description, temp, humidity, speed);
+  },
+};
+console.log(weather);
 
 // FUNCTIONS
 // Create function to search a City
