@@ -11,46 +11,90 @@ nav {
     background-image: linear-gradient(to right, rgb(78, 121, 206) , rgb(21, 5, 88));
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
     font-weight: bolder;
     text-align: center;
+    line-height: 50px;
     padding: 10px;
-    align-items: center;
-    height: 40px;
+    height: 80px;
+}
+
+.container {
+    display: flex;
+    margin: 20px;
+}
+
+.container-right {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    margin: 0 30px; 
+
 }
 
 .search {
+    margin: 10px 0;
+    display: block;
+    font-size: 25px;
+    width: 20%;
+}
+
+h2 {
+    margin 10px 0;
+}
+
+.input {
     margin: 10px 0;
 }
 
 button {
     background-color: rgb(18, 147, 228);
     color: white;
-    width: 200px;
+    width: 320px;
     height: 30px;
+    margin: 10px 0;
 }
 
 .history {
     background-color: yellow;
     color: purple;
+    height: 300px;
+    width: 320px;
 }
 
 .todays-weather {
+    padding: 20px;
+    margin: 20px;
+    font-family: Arial, Helvetica, sans-serif;
     border: 3px solid black;
+    width: 1200px;
+    height: 150px
 }
 
 .five-day-forecast {
+    margin: 20px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     display: flex;
+    justify-content: flex-end;
+}
+
+h3 {
+    font-size: 25px;
 }
 
 .future {
     background-color: rgb(21, 5, 88);
     color: white;
-    text-align: start;
-    width: 300px;
-    height: 500px;
+    width: 200px;
+    height: 250px;
     margin: 20px;
-    display: flex;
-    justify-content: flex-end;
+    padding: 10px;
+    display: block;
+}
+
+/* Make three different media screen changes to the page*/
+@media screen and(max-width: 900px) {
+
+    
 }

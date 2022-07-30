@@ -1,8 +1,32 @@
-console.log("test");
 // VARIABLES
+// https://api.openweathermap.org/data/2.5/weather?q='+inputValue.value+'&c16416fa1720113ce4b015709f047825
+// http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={API key}
+
+var button = document.getElementsByName("button");
+var inputValue = document.getElementsByName("inputValue");
+var date = document.querySelector(".date");
+var icon = document.querySelector(".icon");
+var temp = document.querySelector(".temp");
+var wind = document.querySelector(".wind");
+var humidity = document.querySelector(".humidity");
+var apiKey = "c16416fa1720113ce4b015709f047825";
+var city;
+var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
 // var the API for Weather
-var apiCall =
-  "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}";
+var apiUrl =
+  "api.openweathermap.org/data/2.5/forecast?q={city name}&appid=c16416fa1720113ce4b015709f047825";
+
+button.addEventListener("click", function () {
+  fetch(apiUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    });
+});
+
+fetch(queryUrl)
 
 // FUNCTIONS
 // Create function to search a City

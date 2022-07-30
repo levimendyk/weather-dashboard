@@ -6,25 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" a href="./assets/css/reset.css" />
     <link rel="stylesheet" a href="./assets/css/style.css" />
-    <title>Document</title>
+    <title>Weather Dashboard</title>
   </head>
   <body>
     <nav>Weather Dashboard</nav>
     <div class="container">
       <div class="search">
         <h2>Search for a City:</h2>
-        <input type="text" />
-        <button type="search">Search</button>
-        <div class="history">test</div>
+        <div class="input">
+          <input type="text" class="inputValue" placeholder="Enter a city" />
+          <button>Search</button>
+        </div>
+        <div class="history">history</div>
       </div>
-      <div class="todays-weather">test</div>
-      <div class="five-day-forecast">
-        <h3>5-Day Forecast:</h3>
-        <div class="future" id="future-one">Test1</div>
-        <div class="future" id="future-two">Test2</div>
-        <div class="future" id="future-three">Test3</div>
-        <div class="future" id="future-four">Test4</div>
-        <div class="future" id="future-five">Test5</div>
+      <div class="container-right">
+        <div class="todays-weather">
+          <div id="city-date">City</div>
+          <div id="current-temp">70 degrees</div>
+          <div id="current-wind">60mpg</div>
+          <div id="current-humidity">46%</div>
+          <div id="uv-index">0.47</div>
+        </div>
+        <div class="five-day-forecast">
+          <h3>5-Day Forecast:</h3>
+          <div class="future" id="future-one">
+            <div class="date" id="date-one">Date</div>
+            <div class="icon" id="icon-one">Test</div>
+            <div class="temp" id="temp-one">Test</div>
+            <div class="wind" id="wind-one">Test</div>
+            <div class="humidity" id="humidity-one"></div>
+          </div>
+          <div class="future" id="future-two">
+            <div class="date" id="date-two">Date</div>
+            <div class="icon" id="icon-two">Test</div>
+            <div class="temp" id="temp-two">Test</div>
+            <div class="wind" id="wind-two">Test</div>
+            <div class="humidity" id="humidity-two"></div>
+          </div>
+          <div class="future" id="future-three">
+            <div class="date" id="date-three">Date</div>
+            <div class="icon" id="icon-three">Test</div>
+            <div class="temp" id="temp-three">Test</div>
+            <div class="wind" id="wind-three">Test</div>
+            <div class="humidity" id="humidity-three"></div>
+          </div>
+          <div class="future" id="future-four">
+            <div class="date" id="date-four">Date</div>
+            <div class="icon" id="icon-four">Test</div>
+            <div class="temp" id="temp-four">Test</div>
+            <div class="wind" id="wind-four">Test</div>
+            <div class="humidity" id="humidity-four"></div>
+          </div>
+          <div class="future" id="future-five">
+            <div class="date" id="date-five">Date</div>
+            <div class="icon" id="icon-five">Test</div>
+            <div class="temp" id="temp-five">Test</div>
+            <div class="wind" id="wind-five">Test</div>
+            <div class="humidity" id="humidity-five"></div>
+          </div>
+        </div>
       </div>
     </div>
     <script src="./assets/js/app.js"></script>
