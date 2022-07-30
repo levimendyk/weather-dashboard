@@ -1,6 +1,6 @@
 // VARIABLES
-var button = document.getElementsByName("button");
-var inputValue = document.getElementsByName("inputValue");
+var button = document.getElementById("searchBtn");
+var cityInputEl = document.getElementById("cityInput");
 var date = document.querySelector(".date");
 var icon = document.querySelector(".icon");
 var temp = document.querySelector(".temp");
@@ -8,26 +8,30 @@ var wind = document.querySelector(".wind");
 var humidity = document.querySelector(".humidity");
 var city;
 var apiKey = "c16416fa1720113ce4b015709f047825";
-var queryUrl =
-  "https://api.openweathermap.org/data/2.5/weather?q=" +
-  city +
-  "&units=imperial&appid=" +
-  apiKey;
+var baseUrl = "https://api.openweathermap.org/";
 
-let weather = {
-  fetchWeather: function (city) {
-    fetch(queryUrl)
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-  },
-  displayWeather: function (data) {
-    const { name } = data.name;
-    const { icon, description } = data.weather;
-    const { speed } = data.wind;
-    console.log(name, icon, description, temp, humidity, speed);
-  },
-};
-console.log(weather);
+button.addEventListener("click", function () {
+  getGeoLocation(cityInputEl.value);
+});
+
+function getGeoLocation(city) {
+  var queryUrl = `${baseUrl}geo/1.0/direct?q=${city}&limit=5&appId=${apiKey}`;
+  fetch(queryUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data && data[0]) {
+        var lat = data[0].lat;
+        var lon = data[0].lon; //(api) data/2.5/
+      }
+    });
+}
+
+function displayWeather(data) {
+  const { name } = data.name;
+  const { icon, description } = data.weather;
+  const { speed } = data.wind;
+  console.log(name, icon, description, temp, humidity, speed);
+}
 
 // FUNCTIONS
 // Create function to search a City
