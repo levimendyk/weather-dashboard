@@ -6,6 +6,11 @@ var icon = document.querySelector(".icon");
 var temp = document.querySelector(".temp");
 var wind = document.querySelector(".wind");
 var humidity = document.querySelector(".humidity");
+var currentCity = document.querySelector("#city-date");
+var currentTemp = document.querySelector("#current-temp");
+var currentWind = document.querySelector("#current-wind");
+var currentHumidity = document.querySelector("#current-humidity");
+var currentUV = document.querySelector("#uv-index");
 var city;
 var apiKey = "c16416fa1720113ce4b015709f047825";
 var baseUrl = "https://api.openweathermap.org/";
@@ -22,16 +27,37 @@ function getGeoLocation(city) {
       if (data && data[0]) {
         var lat = data[0].lat;
         var lon = data[0].lon; //(api) data/2.5/
+        getCurrentWeather(lat, lon);
+        getFiveDay(lat, lon);
       }
     });
 }
 
+function getCurrentWeather(lat, lon) {
+  var queryUrl = `${baseUrl}data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  fetch(queryUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      displayWeather(data);
+      displayFiveDay(data); // 
+    });
+}
+
 function displayWeather(data) {
-  const { name } = data.name;
-  const { icon, description } = data.weather;
+  const { name } = data;
+  const { temp, humidity } = data.main;
+  const { icon, description } = data.weather[0];
   const { speed } = data.wind;
   console.log(name, icon, description, temp, humidity, speed);
+  currentCity.textContent = name;
+  currentTemp.textContent = "Temp: " + temp;
+  currentWind.textContent = "Wind Speed: " + speed;
+  currentHumidity.textContent = "Humidity: " + humidity;
+  currentUV.textContent = "UV Index: " + "";
 }
+
+function
 
 // FUNCTIONS
 // Create function to search a City
