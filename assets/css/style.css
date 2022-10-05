@@ -66,9 +66,16 @@ button {
     padding: 20px;
     margin: 20px;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
     border: 3px solid black;
     width: 1200px;
     height: 150px
+}
+
+#city-date {
+    font-size: 25px;
+    font-weight: bolder;
+    text-decoration: underline;
 }
 
 .five-day-forecast {
@@ -84,8 +91,9 @@ h3 {
 }
 
 .future {
-    background-color: rgb(21, 5, 88);
+    background-color: rgb(13, 1, 63);
     color: white;
+    font-size: 20px;
     width: 200px;
     height: 250px;
     margin: 20px;

@@ -40,7 +40,7 @@ function getCurrentWeather(lat, lon) {
     .then((data) => {
       console.log(data);
       displayWeather(data);
-      displayFiveDay(data); // 
+      displayFiveDay(data); //
     });
 }
 
@@ -57,7 +57,19 @@ function displayWeather(data) {
   currentUV.textContent = "UV Index: " + "";
 }
 
-function
+// Work in progress?-LEVI
+function getFiveDay(lat, lon) {
+  var queryUrl = `${baseUrl}data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  fetch(queryUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      displayWeather(data);
+      displayFiveDay(data);
+    });
+}
+
+// function displayFiveDay(data) {}
 
 // FUNCTIONS
 // Create function to search a City
