@@ -11,6 +11,7 @@ var currentTemp = document.querySelector("#current-temp");
 var currentWind = document.querySelector("#current-wind");
 var currentHumidity = document.querySelector("#current-humidity");
 var currentUV = document.querySelector("#uv-index");
+var fiveDay = document.querySelector(".five-day-forecast");
 var city;
 var apiKey = "c16416fa1720113ce4b015709f047825";
 var baseUrl = "https://api.openweathermap.org/";
@@ -40,7 +41,7 @@ function getCurrentWeather(lat, lon) {
     .then((data) => {
       console.log(data);
       displayWeather(data);
-      displayFiveDay(data); //
+      getFiveDay(lat, lon); //
     });
 }
 
@@ -64,19 +65,37 @@ function getFiveDay(lat, lon) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      displayWeather(data);
       displayFiveDay(data);
     });
 }
 
-// function displayFiveDay(data) {}
+function displayFiveDay(data) {
+  fiveDay.innerHTML = "";
+  for (let index = 4; index < data.list.length; index += 8) {
+    var currentDay = data.list[index];
+    var containerEl = document.createElement("div");
+    var dateEl = document.createElement("p");
+    var iconEl = document.createElement("img");
+    var tempEl = document.createElement("p");
+    var windEl = document.createElement("p");
+    var humidityEl = document.createElement("p");
 
-// FUNCTIONS
-// Create function to search a City
-// Create function to display todays weather information in the "todays-weather" class ((Include City & Date & Icon.img; Temp; Wind; Humidity; UV Index(changes to Green, Yellow, or Red)))
-// Create function to display the next five days weather information in the "five-day-forecast" container ((Include Date; Icon.img; Temp; Wind; Humidity))
-// Create function to log last search (searches)
-// Create function to display the search histories
-// Create function to click on search histories to pull up the current and five day forecast
+    dateEl.textContent = currentDay.dt_txt.split(" ")[0];
+    iconEl.src = `http://openweathermap.org/img/wn/${currentDay.weather[0].icon}@2x.png`;
 
-// LOGIC
+    //new Date(currentDay.dt * 1000);
+
+    containerEl.setAttribute("class", "future");
+    containerEl.appendChild(dateEl);
+    containerEl.appendChild(iconEl);
+    containerEl.appendChild(tempEl);
+    containerEl.appendChild(windEl);
+    containerEl.appendChild(humidityEl);
+
+    fiveDay.appendChild(containerEl);
+  }
+}
+// in getcurrent weather create a function to save to local storage the item that was just searched, do not use user input, use data.name
+
+// Your local storage will contain a stringified array that contains the names of the cities searched eg ["Dever", "Los Angeles"]
+// before saving a new city to the list check  if the city  already exists in the array hint * array.incldes(someVar) var someVar = "somestring"
