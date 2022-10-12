@@ -35,7 +35,7 @@ function getGeoLocation(city) {
 }
 
 function getCurrentWeather(lat, lon) {
-  var queryUrl = `${baseUrl}data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  var queryUrl = `${baseUrl}data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
   fetch(queryUrl)
     .then((response) => response.json())
     .then((data) => {
@@ -52,15 +52,15 @@ function displayWeather(data) {
   const { speed } = data.wind;
   console.log(name, icon, description, temp, humidity, speed);
   currentCity.textContent = name;
-  currentTemp.textContent = "Temp: " + temp;
-  currentWind.textContent = "Wind Speed: " + speed;
-  currentHumidity.textContent = "Humidity: " + humidity;
+  currentTemp.textContent = "Temp: " + temp + " F";
+  currentWind.textContent = "Wind Speed: " + speed + " MPH";
+  currentHumidity.textContent = "Humidity: " + humidity + " %";
   currentUV.textContent = "UV Index: " + "";
 }
 
 // Work in progress?-LEVI
 function getFiveDay(lat, lon) {
-  var queryUrl = `${baseUrl}data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  var queryUrl = `${baseUrl}data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
   fetch(queryUrl)
     .then((response) => response.json())
     .then((data) => {
@@ -82,6 +82,9 @@ function displayFiveDay(data) {
 
     dateEl.textContent = currentDay.dt_txt.split(" ")[0];
     iconEl.src = `http://openweathermap.org/img/wn/${currentDay.weather[0].icon}@2x.png`;
+    tempEl.textContent = "Temp: " + currentDay.main.temp + " F";
+    windEl.textContent = "Wind Speed: " + currentDay.wind.speed + " MPH";
+    humidityEl.textContent = "Humidity: " + currentDay.main.humidity + " %";
 
     //new Date(currentDay.dt * 1000);
 

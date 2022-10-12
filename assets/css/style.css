@@ -88,6 +88,10 @@ button {
 
 h3 {
     font-size: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+    margin-right: 800px;
 }
 
 .future {
@@ -102,7 +106,51 @@ h3 {
 }
 
 /* Make three different media screen changes to the page*/
-@media screen and(max-width: 900px) {
 
-    
+@media screen and (max-width: 1430px) {
+    .todays-weather {
+        width:max-content;
+        margin-right: auto;
+        background-color: red;   
+    }
+    h3 {
+        font-size: medium;
+        margin-left: auto;
+    }
+    .five-day-forecast {
+        width: max-content;
+        margin-right: auto;
+        background-color: red;
+    }
+    .future {
+        width: fit-content;
+        font-size: small;
+    }
+    input {
+        width: min-content;
+    }
+    #searchBtn {
+        width: auto;
+    }
+    .history {
+        width: 250px;
+        font-size: smaller;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    body {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    nav {
+        width: 550px;
+    }
+    .todays-weather {
+        display: blowck;
+        flex-wrap: wrap;
+    }
+    .five-day-forecast {
+        display: block;
+    }
 }
