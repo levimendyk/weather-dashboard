@@ -14,6 +14,7 @@ var currentUV = document.querySelector("#uv-index");
 var fiveDay = document.querySelector(".five-day-forecast");
 var history = document.querySelector(".history");
 var city;
+var cityNames = [];
 var apiKey = "c16416fa1720113ce4b015709f047825";
 var baseUrl = "https://api.openweathermap.org/";
 
@@ -42,10 +43,6 @@ function getCurrentWeather(lat, lon) {
     .then((data) => {
       console.log(data);
       // saves to local storage
-
-      // How do I check to see if cityExist is already one of the elements in the array??-LEVI  != cityExist)
-
-      var cityNames = [];
       var city = data.name;
       cityNames.push(city);
       localStorage.setItem("city", JSON.stringify(cityNames));
@@ -116,7 +113,7 @@ function displaySearches() {
   var getCity = localStorage.getItem(city);
 
   var citySearchBtn = document.createElement("button");
-  
+
   citySearchBtn.textContent = getCity;
 
   history.appendChild(citySearchBtn);
