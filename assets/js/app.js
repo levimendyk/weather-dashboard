@@ -12,6 +12,7 @@ var currentWind = document.querySelector("#current-wind");
 var currentHumidity = document.querySelector("#current-humidity");
 var currentUV = document.querySelector("#uv-index");
 var fiveDay = document.querySelector(".five-day-forecast");
+var history = document.querySelector(".history");
 var city;
 var apiKey = "c16416fa1720113ce4b015709f047825";
 var baseUrl = "https://api.openweathermap.org/";
@@ -40,8 +41,19 @@ function getCurrentWeather(lat, lon) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+      // saves to local storage
+
+      // How do I check to see if cityExist is already one of the elements in the array??-LEVI  != cityExist)
+
+      var cityNames = [];
+      var city = data.name;
+      cityNames.push(city);
+      localStorage.setItem("city", JSON.stringify(cityNames));
+
+      // cityNames = cityNames.push(localStorage.setItem('city', JSON.stringify(data.name)));
       displayWeather(data);
-      getFiveDay(lat, lon); //
+      displaySearches();
+      getFiveDay(lat, lon);
     });
 }
 
@@ -58,7 +70,7 @@ function displayWeather(data) {
   currentUV.textContent = "UV Index: " + "";
 }
 
-// Work in progress?-LEVI
+// calls five day api
 function getFiveDay(lat, lon) {
   var queryUrl = `${baseUrl}data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
   fetch(queryUrl)
@@ -69,6 +81,7 @@ function getFiveDay(lat, lon) {
     });
 }
 
+// displays five day forecast
 function displayFiveDay(data) {
   fiveDay.innerHTML = "";
   for (let index = 4; index < data.list.length; index += 8) {
@@ -86,8 +99,6 @@ function displayFiveDay(data) {
     windEl.textContent = "Wind Speed: " + currentDay.wind.speed + " MPH";
     humidityEl.textContent = "Humidity: " + currentDay.main.humidity + " %";
 
-    //new Date(currentDay.dt * 1000);
-
     containerEl.setAttribute("class", "future");
     containerEl.appendChild(dateEl);
     containerEl.appendChild(iconEl);
@@ -98,7 +109,18 @@ function displayFiveDay(data) {
     fiveDay.appendChild(containerEl);
   }
 }
-// in getcurrent weather create a function to save to local storage the item that was just searched, do not use user input, use data.name
+
+// displays recent city searches/search history
+
+function displaySearches() {
+  var getCity = localStorage.getItem(city);
+
+  var citySearchBtn = document.createElement("button");
+  
+  citySearchBtn.textContent = getCity;
+
+  history.appendChild(citySearchBtn);
+}
 
 // Your local storage will contain a stringified array that contains the names of the cities searched eg ["Dever", "Los Angeles"]
 // before saving a new city to the list check  if the city  already exists in the array hint * array.incldes(someVar) var someVar = "somestring"

@@ -26,7 +26,7 @@ GIVEN a weather dashboard with form inputs
 <li>THEN I am again presented with current and future conditions for that city</li>
 </ul>
 
-[Deployed Site](placeholder)
+[Deployed Site](https://levimendyk.github.io/weather-dashboard/)
 
 Contribution guidelines for this project
 <img src="./assets/images/dashboard-capture.PNG" alt="weather dashboard screenshot" />
