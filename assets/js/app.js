@@ -110,7 +110,7 @@ function displayFiveDay(data) {
 // displays recent city searches/search history
 
 function displaySearches() {
-  var getCity = localStorage.getItem(city);
+  var getCity = JSON.parse(localStorage.getItem("city"));
 
   var citySearchBtn = document.createElement("button");
 
