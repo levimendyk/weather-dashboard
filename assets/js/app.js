@@ -12,7 +12,7 @@ var currentWind = document.querySelector("#current-wind");
 var currentHumidity = document.querySelector("#current-humidity");
 var currentUV = document.querySelector("#uv-index");
 var fiveDay = document.querySelector(".five-day-forecast");
-var history = document.querySelector(".history");
+
 var city;
 var cityNames = [];
 var apiKey = "c16416fa1720113ce4b015709f047825";
@@ -41,11 +41,15 @@ function getCurrentWeather(lat, lon) {
   fetch(queryUrl)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       // saves to local storage
       var city = data.name;
-      cityNames.push(city);
-      localStorage.setItem("city", JSON.stringify(cityNames));
+      if (cityNames.includes(city)) {
+        alert("Already Searched");
+      } else {
+        cityNames.push(city);
+        localStorage.setItem("city", JSON.stringify(cityNames));
+      }
+
       displayWeather(data);
       displaySearches();
       getFiveDay(lat, lon);
@@ -110,16 +114,14 @@ function displayFiveDay(data) {
 function displaySearches() {
   var getCityAry = JSON.parse(localStorage.getItem("city"));
   var citySearchBtn = document.createElement("button");
-  if (!getCityAry) {
-    getCityAry = [];
-  } else {
-    for (let index = 0; index < getCityAry.length; index++) {
-      citySearchBtn(getCityAry[index]);
-    }
-  }
-  // citySearchBtn.textContent = getCity;
-
-  // history.append(citySearchBtn);
+  var searchDiv = document.querySelector(".history");
+  citySearchBtn.innerHTML = getCityAry;
+  citySearchBtn.className = "searchbtn";
+  searchDiv.append(citySearchBtn);
+  // if (!getCityAry) {
+  //   getCityAry = [];
+  // } else {
+  //   for (let index = 0; index < getCityAry.length; index++) {
 }
 
 // Your local storage will contain a stringified array that contains the names of the cities searched eg ["Dever", "Los Angeles"]
