@@ -46,8 +46,6 @@ function getCurrentWeather(lat, lon) {
       var city = data.name;
       cityNames.push(city);
       localStorage.setItem("city", JSON.stringify(cityNames));
-
-      // cityNames = cityNames.push(localStorage.setItem('city', JSON.stringify(data.name)));
       displayWeather(data);
       displaySearches();
       getFiveDay(lat, lon);
@@ -110,13 +108,18 @@ function displayFiveDay(data) {
 // displays recent city searches/search history
 
 function displaySearches() {
-  var getCity = JSON.parse(localStorage.getItem("city"));
-
+  var getCityAry = JSON.parse(localStorage.getItem("city"));
   var citySearchBtn = document.createElement("button");
+  if (!getCityAry) {
+    getCityAry = [];
+  } else {
+    for (let index = 0; index < getCityAry.length; index++) {
+      citySearchBtn(getCityAry[index]);
+    }
+  }
+  // citySearchBtn.textContent = getCity;
 
-  citySearchBtn.textContent = getCity;
-
-  history.appendChild(citySearchBtn);
+  // history.append(citySearchBtn);
 }
 
 // Your local storage will contain a stringified array that contains the names of the cities searched eg ["Dever", "Los Angeles"]
