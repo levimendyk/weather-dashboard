@@ -113,16 +113,23 @@ function displayFiveDay(data) {
 
 function displaySearches() {
   var getCityAry = JSON.parse(localStorage.getItem("city"));
-  var citySearchBtn = document.createElement("button");
-  var searchDiv = document.querySelector(".history");
-  citySearchBtn.innerHTML = getCityAry;
-  citySearchBtn.className = "searchbtn";
-  searchDiv.append(citySearchBtn);
-  // if (!getCityAry) {
-  //   getCityAry = [];
-  // } else {
-  //   for (let index = 0; index < getCityAry.length; index++) {
+  getCityAry.innerHTML = "";
+  for (let index = 0; index < getCityAry.length; index++) {
+    citySearchBtn.innerHTML = getCityAry[index];
+    citySearchBtn.className = "searchbtn";
+    searchDiv.append(citySearchBtn);
+  }
 }
 
+function research() {}
+
+var citySearchBtn = document.createElement("button");
+var searchDiv = document.querySelector(".history");
+
+searchDiv.addEventListener("click", function (event) {
+  if (event.target.className === "searchBtn") {
+    console.log("hello");
+  }
+});
 // Your local storage will contain a stringified array that contains the names of the cities searched eg ["Dever", "Los Angeles"]
 // before saving a new city to the list check  if the city  already exists in the array hint * array.incldes(someVar) var someVar = "somestring"
