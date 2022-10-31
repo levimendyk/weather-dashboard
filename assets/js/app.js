@@ -12,9 +12,10 @@ var currentWind = document.querySelector("#current-wind");
 var currentHumidity = document.querySelector("#current-humidity");
 var currentUV = document.querySelector("#uv-index");
 var fiveDay = document.querySelector(".five-day-forecast");
+var searchDiv = document.querySelector(".history");
 
 var city;
-var cityNames = [];
+var cityNames = JSON.parse(localStorage.getItem("city")) || [];
 var apiKey = "c16416fa1720113ce4b015709f047825";
 var baseUrl = "https://api.openweathermap.org/";
 
@@ -43,9 +44,7 @@ function getCurrentWeather(lat, lon) {
     .then((data) => {
       // saves to local storage
       var city = data.name;
-      if (cityNames.includes(city)) {
-        alert("Already Searched");
-      } else {
+      if (!cityNames.includes(city)) {
         cityNames.push(city);
         localStorage.setItem("city", JSON.stringify(cityNames));
       }
@@ -113,23 +112,26 @@ function displayFiveDay(data) {
 
 function displaySearches() {
   var getCityAry = JSON.parse(localStorage.getItem("city"));
-  getCityAry.innerHTML = "";
+  searchDiv.innerHTML = "";
+  console.log(getCityAry);
   for (let index = 0; index < getCityAry.length; index++) {
+    var citySearchBtn = document.createElement("button");
     citySearchBtn.innerHTML = getCityAry[index];
     citySearchBtn.className = "searchbtn";
     searchDiv.append(citySearchBtn);
   }
 }
-
-function research() {}
-
-var citySearchBtn = document.createElement("button");
-var searchDiv = document.querySelector(".history");
+displaySearches();
 
 searchDiv.addEventListener("click", function (event) {
-  if (event.target.className === "searchBtn") {
-    console.log("hello");
+  if (event.target.className === "searchbtn") {
+    console.log(event); // extract name from buttons
+    var city = event.target.innerText;
+    getGeoLocation(city);
+  } else {
+    console.log("Didn't click the button");
   }
 });
+
 // Your local storage will contain a stringified array that contains the names of the cities searched eg ["Dever", "Los Angeles"]
 // before saving a new city to the list check  if the city  already exists in the array hint * array.incldes(someVar) var someVar = "somestring"
