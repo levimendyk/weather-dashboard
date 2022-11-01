@@ -132,6 +132,3 @@ searchDiv.addEventListener("click", function (event) {
     console.log("Didn't click the button");
   }
 });
-
-// Your local storage will contain a stringified array that contains the names of the cities searched eg ["Dever", "Los Angeles"]
-// before saving a new city to the list check  if the city  already exists in the array hint * array.incldes(someVar) var someVar = "somestring"
