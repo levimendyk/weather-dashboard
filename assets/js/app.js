@@ -1,4 +1,4 @@
-// VARIABLES
+// VARIABLES-
 var button = document.getElementById("searchBtn");
 var cityInputEl = document.getElementById("cityInput");
 var date = document.querySelector(".date");
